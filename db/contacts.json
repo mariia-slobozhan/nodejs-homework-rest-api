@@ -54,12 +54,6 @@
     "phone": "(704) 398-7993"
   },
   {
-    "id": "10",
-    "name": "Alec Howard",
-    "email": "Donec.elementum@scelerisquescelerisquedui.net",
-    "phone": "(748) 206-2688"
-  },
-  {
     "id": "29fdfab3-fb52-48ea-bf78-46d246cdce37",
     "name": "Aleksandra Braun",
     "email": "aleksandra.braun@mail.net",
@@ -70,5 +64,11 @@
     "name": "Samanta Johns",
     "email": "samanta.johns@mail.net",
     "phone": "(093)889-37-05"
+  },
+  {
+    "id": "ba8f5bd1-21b7-4c88-9189-76ff4bae2a03",
+    "name": "Victoria Bright",
+    "email": "victiria.diam@Donec.com",
+    "phone": "(096) 789-2360"
   }
 ]
