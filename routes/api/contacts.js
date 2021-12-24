@@ -1,24 +1,25 @@
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
+const {
+  getContacts,
+  getContactById,
+  addContact,
+  deleteContact,
+  updateContact,
+} = require("../../controllers/contacts");
+const {
+  createValidation,
+  updateValidation,
+} = require("../../midllewares/validation/contactsValidation");
 
-router.get('/', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
+router.get("/", getContacts);
 
-router.get('/:contactId', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
+router.get("/:id", getContactById);
 
-router.post('/', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
+router.post("/", createValidation, addContact);
 
-router.delete('/:contactId', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
+router.delete("/:id", deleteContact);
 
-router.patch('/:contactId', async (req, res, next) => {
-  res.json({ message: 'template message' })
-})
+router.put("/:id", updateValidation, updateContact);
 
-module.exports = router
+module.exports = router;
