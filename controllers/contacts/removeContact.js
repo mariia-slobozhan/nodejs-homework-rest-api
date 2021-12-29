@@ -1,12 +1,17 @@
-const model = require('../../model/contacts');
+const repository = require("../../repository/contacts");
+const HttpCode = require("../../config/constants");
 
 const deleteContact = async (req, res, next) => {
   const { id } = req.params;
-  const contact = await model.removeContact(id);
-    if (contact) {
-    return res.status(200).json({"message": "Contact deleted"});    
+  const contact = await repository.removeContact(id);
+  if (contact) {
+    return res
+      .status(HttpCode.OK)
+      .json({ status: "success", code: HttpCode.OK, data: { contact } });
   }
-  res.status(404).json({ "message": 'Not found' }); 
-}
+  res
+    .status(HttpCode.NOT_FOUND)
+    .json({ status: "error", code: HttpCode.NOT_FOUND, message: "Not found" });
+};
 
 module.exports = deleteContact;
