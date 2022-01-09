@@ -1,10 +1,14 @@
-const Contact = require('../../models/Contact');
+const Contact = require("../../models/Contact");
 
-const updateContact = async (contactId, body) => {
-  const result = await Contact.findByIdAndUpdate({ _id: contactId }, body, {
-    new: true,
-    runValidators: true
-  });
+const updateContact = async (userId, contactId, body) => {
+  const result = await Contact.findOneAndUpdate(
+    { _id: contactId, owner: userId },
+    { ...body },
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
   return result;
 };
 

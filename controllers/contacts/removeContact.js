@@ -1,9 +1,10 @@
-const repository = require("../../repository/contacts");
-const HttpCode = require("../../config/constants");
+const { contactsRep } = require("../../repository");
+const { HttpCode } = require("../../config/constants");
 
 const deleteContact = async (req, res, next) => {
   const { id } = req.params;
-  const contact = await repository.removeContact(id);
+  const { id: userId } = req.user;
+  const contact = await contactsRep.removeContact(userId, id);
   if (contact) {
     return res
       .status(HttpCode.OK)
