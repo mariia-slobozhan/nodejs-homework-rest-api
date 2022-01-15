@@ -20,7 +20,6 @@ const updateFavoriteSchema = Joi.object({
 });
 
 const limitReg = /\d+/
-// const filterReg = /(name|phone|email|favorite|createdAt|updatedAt)\\|?(name|phone|email|favorite|createdAt|updatedAt)+/
 
 
 const querySchema = Joi.object({

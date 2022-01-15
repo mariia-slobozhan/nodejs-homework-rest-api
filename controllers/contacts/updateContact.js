@@ -1,9 +1,10 @@
-const repository = require("../../repository/contacts");
-const HttpCode = require("../../config/constants");
+const { contactsRep } = require("../../repository");
+const { HttpCode } = require("../../config/constants");
 
 const updateContact = async (req, res, next) => {
   const { id } = req.params;
-  const contact = await repository.updateContact(id, req.body);
+  const { id: userId } = req.user;
+  const contact = await contactsRep.updateContact(userId, id, req.body);
   if (contact) {
     return res
       .status(HttpCode.OK)
