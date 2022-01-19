@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { contacts: contactsController } = require("../../controllers");
+const { guard, validation } = require("../../midllewares");
 
 const {
   getContacts,
@@ -10,15 +11,16 @@ const {
   updateContact,
 } = contactsController;
 
+const { contactsValidation } = validation;
+
 const {
   createValidation,
   updateValidation,
   updateFavoriteValidation,
   validateId,
   validateQuery,
-} = require("../../midllewares/validation/contactsValidation");
+} = contactsValidation;
 
-const guard = require("../../midllewares/guard");
 
 router.get("/", [guard, validateQuery], getContacts);
 

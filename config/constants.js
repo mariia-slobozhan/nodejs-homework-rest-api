@@ -19,4 +19,6 @@ const Role = {
 
 const LIMIT_JSON = 5000;
 
-module.exports = { HttpCode, Role, LIMIT_JSON };
+const CLOUD_FOLDER_AVATARS = "Avatars"
+
+module.exports = { HttpCode, Role, LIMIT_JSON, CLOUD_FOLDER_AVATARS };

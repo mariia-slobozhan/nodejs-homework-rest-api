@@ -11,8 +11,8 @@ class AuthService {
     
     async create(body) {
         const newUser = await userRep.create(body);
-        const { id, subscription, email, role } = newUser;
-        return { id, subscription, email, role };
+        const { id, subscription, email, role, avatarURL } = newUser;
+        return { id, subscription, email, role, avatarURL };
 
   }
   
