@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // const myMock = jest.fn();
 const signup = require("./signup");
 const { HttpCode } = require("../../config/constants");

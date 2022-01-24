@@ -1,10 +1,14 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcryptjs");
 const gravatar = require('gravatar');
+const {randomUUID} = require('crypto');
 const { Role } = require("../config/constants");
 
 const userSchema = new Schema(
-  {
+  {  name: {
+      type: String,
+      default: 'Guest',
+    },
     email: {
       type: String,
       required: [true, "Set email for user"],
@@ -44,7 +48,15 @@ const userSchema = new Schema(
     avatarCloudId: {
       type: String,
       default: null,
-    }
+    },
+    isVerify: {
+      type: Boolean,
+      default: false
+    },
+    verifyTokenEmail: {
+      type: String,
+      default: randomUUID(),
+    },
   },
   {
     versionKey: false,
