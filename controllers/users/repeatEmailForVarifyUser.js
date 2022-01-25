@@ -1,4 +1,5 @@
 const { HttpCode } = require("../../config/constants");
+const CustomError = require('../../config/custom-error');
 const { userRep } = require("../../repository");
 const {
   EmailService,
@@ -28,18 +29,20 @@ const repeatEmailForVerifyUser = async (req, res, next) => {
         data: { message: "Success", isSendEmailVerify: isSend },
       });
     }
-    res.status(HttpCode.UNPROCESSABLE_ENTITY).json({
-      status: "error",
-      code: HttpCode.UNPROCESSABLE_ENTITY,
-      data: { message: "Unprocessable Entity" },
-    });
+    throw new CustomError(HttpCode.SERVICE_UNAVAILABLE, "Service anavailable");
+    // res.status(HttpCode.SERVICE_UNAVAILABLE).json({
+    //   status: "error",
+    //   code: HttpCode.SERVICE_UNAVAILABLE,
+    //   data: { message: "Service anavailable" },
+    // });
   }
+  throw new CustomError(HttpCode.NOT_FOUND, "User with this email not found");
 
-  res.status(HttpCode.NOT_FOUND).json({
-    status: "error",
-    code: HttpCode.NOT_FOUND,
-    data: { message: "User with this email not found" },
-  });
+  // res.status(HttpCode.NOT_FOUND).json({
+  //   status: "error",
+  //   code: HttpCode.NOT_FOUND,
+  //   data: { message: "User with this email not found" },
+  // });
 };
 
 module.exports = repeatEmailForVerifyUser;

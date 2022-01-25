@@ -1,13 +1,14 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcryptjs");
-const gravatar = require('gravatar');
-const {randomUUID} = require('crypto');
+const gravatar = require("gravatar");
+const { randomUUID } = require("crypto");
 const { Role } = require("../config/constants");
 
 const userSchema = new Schema(
-  {  name: {
+  {
+    name: {
       type: String,
-      default: 'Guest',
+      default: "Guest",
     },
     email: {
       type: String,
@@ -18,7 +19,8 @@ const userSchema = new Schema(
         return regul.test(String(value).trim().toLowerCase());
       },
     },
-    password: {  // or hash
+    password: {
+      // or hash
       type: String,
       required: [true, "Set password for user"],
     },
@@ -42,16 +44,16 @@ const userSchema = new Schema(
     avatarURL: {
       type: String,
       default: function () {
-        return gravatar.url(this.email, { s: '250'}, true)
-      }
-    }, 
+        return gravatar.url(this.email, { s: "250" }, true);
+      },
+    },
     avatarCloudId: {
       type: String,
       default: null,
     },
     isVerify: {
       type: Boolean,
-      default: false
+      default: false,
     },
     verifyTokenEmail: {
       type: String,

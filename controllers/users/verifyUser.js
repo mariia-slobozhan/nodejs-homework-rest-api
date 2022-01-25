@@ -1,4 +1,5 @@
 const { HttpCode } = require("../../config/constants");
+const CustomError = require('../../config/custom-error');
 const { userRep } = require("../../repository");
 
 const verifyUser = async (req, res, next) => {
@@ -14,13 +15,14 @@ const verifyUser = async (req, res, next) => {
         data: { message: "Success" },
       });
   }
-  res
-    .status(HttpCode.BAD_REQUEST)
-    .json({
-      status: "error",
-      code: HttpCode.BAD_REQUEST,
-      data: { message: "Invalid token" },
-    });
+  throw new CustomError(HttpCode.BAD_REQUEST, "Bad request");
+  // res
+  //   .status(HttpCode.BAD_REQUEST)
+  //   .json({
+  //     status: "error",
+  //     code: HttpCode.BAD_REQUEST,
+  //     data: { message: "Invalid token" },
+  //   });
 };
 
 module.exports = verifyUser;

@@ -5,16 +5,16 @@ class EmailService {
     this.sender = sender;
     switch (env) {
       case "development":
-        this.link = "https://0ffd-194-104-23-201.ngrok.io";
+        this.link = "https://626b-46-211-64-4.ngrok.io";
         break;
       case "test":
-        this.link = "http://localhost:5000/";
+        this.link = "http://localhost:5000";
         break;
       case "production":
-        this.link = "http://heroku/";
+        this.link = "https://contacts-storage-app.herokuapp.com";
         break;
       default:
-        this.link = "http://localhost:3000/";
+        this.link = "http://localhost:3000";
     }
   }
 
@@ -47,21 +47,21 @@ class EmailService {
     return mailGenerator.generate(email);
   }
 
-  async sendVerifyEmail(email, username, verifyToken) {
-    const emailBody = this.createEmailTemplate(username, verifyToken);
+ async sendVerifyEmail(email, username, verifyToken) {
+    const emailBody = this.createEmailTemplate(username, verifyToken)
     const msg = {
       to: email,
-      subject: "Verify email",
+      subject: 'Verify email',
       html: emailBody,
-      };
-      try {
-          const result = await this.sender.send(msg);
-          console.log('result', result);
-          return true;
-      } catch (error) {
-          console.error(error.message);
-          return false;
-      }
+    }
+    try {
+      const result = await this.sender.send(msg)
+      console.log(result)
+      return true
+    } catch (error) {
+      console.error(error.message)
+      return false
+    }
   }
 }
 

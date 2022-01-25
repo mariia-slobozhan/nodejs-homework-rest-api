@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { contacts: contactsController } = require("../../controllers");
 const { guard, validation } = require("../../midllewares");
+const wrapper = require('../../midllewares/error-handler');
 
 const {
   getContacts,
@@ -22,15 +23,15 @@ const {
 } = contactsValidation;
 
 
-router.get("/", [guard, validateQuery], getContacts);
+router.get("/", [guard, validateQuery], wrapper(getContacts));
 
-router.get("/:id", [guard, getContactById], validateId);
+router.get("/:id", [guard, getContactById],  wrapper(validateId));
 
-router.post("/", [guard, createValidation], addContact);
+router.post("/", [guard, createValidation],  wrapper(addContact));
 
-router.delete("/:id", [guard, deleteContact], validateId);
+router.delete("/:id", [guard, deleteContact],  wrapper(validateId));
 
-router.put("/:id", [guard, updateValidation], updateContact);
+router.put("/:id", [guard, updateValidation],  wrapper(updateContact));
 
 router.patch(
   "/:id/favorite",

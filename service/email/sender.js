@@ -3,6 +3,8 @@ const nodemailer = require("nodemailer");
 
 class SenderSendgrid {
   async send(msg) {
+    console.log('SENDGRID_API_KEY',process.env.SENDGRID_API_KEY )
+    console.log('SENDGRIG_EMAIL', process.env.SENDGRIG_EMAIL )
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     return await sgMail.send({ ...msg, from: process.env.SENDGRIG_EMAIL });
   }
